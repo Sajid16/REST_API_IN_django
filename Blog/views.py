@@ -15,12 +15,12 @@ def blogPosts(request):
         serializer = articlesSerializer(article, many=True)
         return JsonResponse(serializer.data, safe=False)
     elif request.method == 'POST':
-        data = JSONParser().parser(request)
+        data = JSONParser().parse(request)
         serializer = articlesSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
-            return JsonResponse('data has been saved successfully to Article', status=201)
-        return JsonResponse(serializer.errors, status=400)
+            return JsonResponse('data has been saved successfully to Article', status=201, safe=False)
+        return JsonResponse(serializer.errors, status=400, safe=False)
 
 
 @csrf_exempt
