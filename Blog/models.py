@@ -13,7 +13,7 @@ class Category(models.Model):
 
 class Articles(models.Model):
     name = models.CharField(max_length = 50, null=False)
-    description = models.TextField(max_length = 50)
+    description = models.TextField(max_length = 500)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
