@@ -36,7 +36,8 @@ from django.urls import path, include
 
 
 urlpatterns = [
-    path('blog/', include('Blog.urls')),
+    path('', include('Content.urls')),
+    path('blog/', include('Blog.urls'), name = "blog"),
     path('api/', include('quickstart.urls')),
     path('admin/', admin.site.urls),
     path('api/auth/', include('rest_framework.urls')),
