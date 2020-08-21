@@ -5,5 +5,5 @@ from django.http import JsonResponse, HttpResponse
 
 def test(request):
     # message = {"it is working properly"}
-    return JsonResponse({"it is working properly"})
-    # return HttpResponse("it is working properly")
+    # return JsonResponse({"it is working properly"})
+    return HttpResponse("it is working properly")
