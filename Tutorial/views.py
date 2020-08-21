@@ -4,5 +4,6 @@ from django.http import JsonResponse, HttpResponse
 # Create your views here.
 
 def test(request):
-    return JsonResponse("it is working properly")
+    message = "it is working properly"
+    return JsonResponse(message)
     # return HttpResponse("it is working properly")
