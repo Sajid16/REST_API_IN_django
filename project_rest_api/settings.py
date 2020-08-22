@@ -66,6 +66,13 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_WHITELIST = (
+    'https://127.0.0.1', 'https://tutorial-api-django.herokuapp.com'
+)
+
+
 ROOT_URLCONF = 'project_rest_api.urls'
 
 TEMPLATES = [
@@ -134,7 +141,3 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATIC_URL = '/static/'
 
-CORS_ORIGIN_ALLOW_ALL = False
-CORS_ORIGIN_WHITELIST = (
-    'https://127.0.0.1', 'https://tutorial-api-django.herokuapp.com'
-)
