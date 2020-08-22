@@ -1,7 +1,8 @@
 from django.urls import path
-from Tutorial.views import test
+from .views import tutorial_list, tutorial_detail, tutorial_list_published
 
 urlpatterns = [
-    path('', test, name='blogPost'),  # in django v3 just use views name instead of views.views_name
-    # path('<int:pk>/', blogPostDetails, name='details')
+    path('', tutorial_list),
+    path('<int:pk>/', tutorial_detail),
+    path('published/', tutorial_list_published)
 ]
