@@ -24,6 +24,7 @@ def tutorial_list(request):
 
     elif request.method == 'POST':
         tutorial_data = JSONParser().parse(request)
+        # print(len(tutorial_data))
         tutorial_serializer = TutorialSerializer(data=tutorial_data)
         if tutorial_serializer.is_valid():
             tutorial_serializer.save()

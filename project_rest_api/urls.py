@@ -38,6 +38,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('', include('Content.urls')),
+    path('snippets/', include('snippets.urls'), name="snippets"),
     path('blog/', include('Blog.urls'), name="blog"),
     path('tutorial/', include('Tutorial.urls'), name="tutorial"),
     path('api/', include('quickstart.urls')),
