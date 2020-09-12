@@ -18,3 +18,10 @@ class Snippet(models.Model):
     class Meta:
         ordering = ['created']
 
+class UserList(models.Model):
+    username = models.CharField(max_length=100, blank=True, default='')
+    password = models.CharField(max_length=100, blank=True, default='')
+    created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['created']

@@ -2,3 +2,4 @@
 project_rest_api/__pycache__/
 snippets/__init__.py
 snippets/__pycache__/
+snippets/migrations/__pycache__

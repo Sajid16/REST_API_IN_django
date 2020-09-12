@@ -1,8 +1,8 @@
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from snippets.models import Snippet
-from snippets.serializers import SnippetSerializer
+from .models import Snippet, UserList
+from .serializers import SnippetSerializer, UserSerializer
 
 # extra import for class based views
 from django.http import Http404
@@ -52,6 +52,37 @@ def snippet_detail(request, pk):
     elif request.method == 'DELETE':
         snippet.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+@api_view(['GET', 'POST'])
+def user_list(request):
+    """
+    List all code snippets, or create a new snippet.
+    """
+    name = []
+    password = []
+    if request.method == 'GET':
+        userList = UserList.objects.all()
+        serializer = UserSerializer(userList, many=True)
+        # print(len(serializer.data))
+        for i in range(len(serializer.data)):
+            name.append(serializer.data[i]['username'])
+            password.append(serializer.data[i]['password'])
+        # print(name)
+        # print(password)
+        context = {
+            'username': name,
+            'pass': password
+        }
+        return Response(context)
+
+    elif request.method == 'POST':
+        serializer = UserSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 ################################################################################ CLASS BASED VIEW SETS ############################################################
 
