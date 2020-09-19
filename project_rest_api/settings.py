@@ -23,8 +23,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 SECRET_KEY = 'bwh5#y_$6*qtino^w9h9gk5ab5dkq-dtkhajd9871r9q!fc0rp'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = False
+DEBUG = True
+# DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', 'tutorial-api-django.herokuapp.com']
 
@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'Tutorial',
     'snippets',
     'corsheaders',
+    'fileUpload',
+    'employee'
 ]
 
 # initial object added according to documentation
@@ -68,12 +70,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-
-CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_ALLOW_ALL = True
 CORS_ORIGIN_WHITELIST = (
     'https://127.0.0.1', 'https://tutorial-api-django.herokuapp.com'
 )
-
 
 ROOT_URLCONF = 'project_rest_api.urls'
 
@@ -141,3 +141,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
