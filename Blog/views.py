@@ -11,6 +11,8 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
+count = 0
+
 
 # API with self made functions
 
@@ -60,16 +62,23 @@ from rest_framework.response import Response
 
 @api_view(['GET', 'POST'])
 def blogPosts(request):
+    test = 0
     if request.method == 'GET':
         article = Articles.objects.all()
         serializer = articlesSerializer(article, many=True)
         return Response(serializer.data)
     elif request.method == 'POST':
-        serializer = articlesSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
+        for i in range(len(request.data)):
+            print(request.data[i])
+            print('test')
+            serializer = articlesSerializer(data=request.data[i])
+            if serializer.is_valid():
+                serializer.save()
+                test += 1
+        if test == len(request.data):
             return Response('data has been saved successfully to Article', status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
